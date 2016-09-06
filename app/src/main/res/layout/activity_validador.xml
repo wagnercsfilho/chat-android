@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:gravity="center"
     tools:context="app.wagnercsfilho.com.whatsapp.activity.ValidadorActivity"
     android:background="@color/colorPrimary">
 
@@ -29,7 +30,8 @@
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
-        android:id="@+id/editText2"
+        android:id="@+id/edit_token"
+        android:gravity="center"
         android:textColor="@color/textColorPrimary" />
 
     <TextView
@@ -48,9 +50,9 @@
         android:text="@string/validar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/edit_token"
         android:layout_marginTop="28dp"
-        android:id="@+id/button3"
+        android:id="@+id/button_validate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"

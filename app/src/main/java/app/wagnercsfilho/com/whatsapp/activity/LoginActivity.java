@@ -1,6 +1,7 @@
 package app.wagnercsfilho.com.whatsapp.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -77,8 +78,11 @@ public class LoginActivity extends AppCompatActivity {
                 phone = "5554";
                 boolean isSent = sendSMS("+" + phone, "Confirmation Code: " + token);
 
-
-                //HashMap<String, String> user = preference.getUserData();
+                if (isSent) {
+                    Intent intent = new Intent(LoginActivity.this, ValidadorActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
 
             }
         });
