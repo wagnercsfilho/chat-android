@@ -1,0 +1,50 @@
+{
+  "project_info": {
+    "project_number": "266131558699",
+    "firebase_url": "https://whatsappchatcurso-67986.firebaseio.com",
+    "project_id": "whatsappchatcurso-67986",
+    "storage_bucket": "whatsappchatcurso-67986.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266131558699:android:04c14412968f8b84",
+        "android_client_info": {
+          "package_name": "app.wagnercsfilho.com.whatsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266131558699-vd2cniunlqegqq7lv6see5i9f2q1fiua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.wagnercsfilho.com.whatsapp",
+            "certificate_hash": "03E3709643F2504BC3623B2D2C139857105E0812"
+          }
+        },
+        {
+          "client_id": "266131558699-6u3dkhb29n080e978ts3oimqg61c2l2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDzhjXXDDZJozhr2_liRYCA1Pkf6kUeo8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
