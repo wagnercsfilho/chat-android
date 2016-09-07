@@ -10,5 +10,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="buttonDefault" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+    </style>
 
 </resources>

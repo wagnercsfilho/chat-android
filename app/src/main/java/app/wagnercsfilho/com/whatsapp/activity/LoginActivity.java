@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +23,6 @@ import app.wagnercsfilho.com.whatsapp.helper.Preference;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText edit_nome;
     EditText edit_pais;
     EditText edit_ddd;
     EditText edit_telefone;
@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
 
         Permission.setPermission(1, this, permissions);
 
-        edit_nome = (EditText) findViewById(R.id.edit_nome);
         edit_pais = (EditText) findViewById(R.id.edit_pais);
         edit_ddd = (EditText) findViewById(R.id.edit_ddd);
         edit_telefone = (EditText) findViewById(R.id.edit_telefone);
@@ -60,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
         button_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = edit_nome.getText().toString();
                 String phone = edit_pais.getText().toString() +
                         edit_ddd.getText().toString() +
                         edit_telefone.getText().toString();
@@ -72,10 +70,11 @@ public class LoginActivity extends AppCompatActivity {
                 String token = String.valueOf(random.nextInt(9999 - 1000) + 1000);
 
                 Preference preference = new Preference(LoginActivity.this);
-                preference.saveUserPreference(name, phone, token);
+                preference.saveUserPreference(phone, token);
 
                 // Send SMS
                 phone = "5554";
+                Log.i("TOKEN", token);
                 boolean isSent = sendSMS("+" + phone, "Confirmation Code: " + token);
 
                 if (isSent) {

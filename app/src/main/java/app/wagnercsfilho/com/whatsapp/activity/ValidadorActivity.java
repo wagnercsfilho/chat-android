@@ -1,5 +1,6 @@
 package app.wagnercsfilho.com.whatsapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -36,13 +37,13 @@ public class ValidadorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Preference preference = new Preference(ValidadorActivity.this);
-                HashMap<String, String> userData = preference.getUserData();
+                HashMap<String, String> userData = preference.getPhoneUserData();
 
                 String userToken = userData.get(Preference.KEY_TOKEN);
                 String inputToken = editToken.getText().toString();
 
                 if (inputToken.equals(userToken)) {
-                    Toast.makeText(ValidadorActivity.this, "Token válido", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(ValidadorActivity.this, SignInActivity.class));
                 } else {
                     Toast.makeText(ValidadorActivity.this, "Token inválido", Toast.LENGTH_LONG).show();
                 }
