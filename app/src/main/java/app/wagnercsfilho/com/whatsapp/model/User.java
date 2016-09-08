@@ -6,10 +6,12 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private String phoneNumber;
 
     public User() {
 
     }
+
 
     public String getId() {
         return id;
@@ -43,8 +45,11 @@ public class User {
         this.password = password;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-
-
-
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

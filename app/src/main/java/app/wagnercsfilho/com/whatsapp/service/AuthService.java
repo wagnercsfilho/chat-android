@@ -1,4 +1,4 @@
-package app.wagnercsfilho.com.whatsapp.services;
+package app.wagnercsfilho.com.whatsapp.service;
 
 
 import android.content.Context;

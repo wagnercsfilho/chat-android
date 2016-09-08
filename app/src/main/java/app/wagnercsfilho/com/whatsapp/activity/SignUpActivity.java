@@ -2,13 +2,17 @@ package app.wagnercsfilho.com.whatsapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.HashMap;
+
 import app.wagnercsfilho.com.whatsapp.R;
+import app.wagnercsfilho.com.whatsapp.helper.Preference;
 import app.wagnercsfilho.com.whatsapp.model.User;
-import app.wagnercsfilho.com.whatsapp.services.AuthService;
+import app.wagnercsfilho.com.whatsapp.service.AuthService;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -32,6 +36,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         authService = new AuthService(this);
 
+        final HashMap<String, String> userData = new Preference(this).getPhoneUserData();
+
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +45,11 @@ public class SignUpActivity extends AppCompatActivity {
                 user.setName(editName.getText().toString());
                 user.setEmail(editEmail.getText().toString());
                 user.setPassword(editPassword.getText().toString());
+                user.setPhoneNumber(userData.get(Preference.KEY_PHONE));
+                Log.i("FIREBASE", user.getPhoneNumber());
                 authService.signUpUserWithEmailAndPassword(user);
+
+
             }
         });
     }
