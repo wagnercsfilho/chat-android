@@ -1,11 +1,14 @@
 package app.wagnercsfilho.com.whatsapp.fragment;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -18,14 +21,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import app.wagnercsfilho.com.whatsapp.R;
+import app.wagnercsfilho.com.whatsapp.activity.ChatActivity;
+import app.wagnercsfilho.com.whatsapp.adapter.ContactAdapter;
 import app.wagnercsfilho.com.whatsapp.helper.Preference;
+import app.wagnercsfilho.com.whatsapp.model.Contact;
 import app.wagnercsfilho.com.whatsapp.model.User;
 
 public class ContactsFragment extends Fragment {
 
     ListView listContact;
     ArrayAdapter<String> adapter;
-    ArrayList<String> contacts;
+    ArrayList<Contact> contacts;
+    DatabaseReference contactsReference;
+    ValueEventListener contactsEventListener;
 
     public ContactsFragment() {
         // Required empty public constructor
@@ -40,22 +48,36 @@ public class ContactsFragment extends Fragment {
         contacts = new ArrayList<>();
 
         listContact = (ListView) view.findViewById(R.id.listContacts);
-        adapter = new ArrayAdapter<>(
+        adapter = new ContactAdapter(
                 getActivity(),
-                R.layout.list_contacts,
-                R.id.textContactName,
                 contacts
         );
+        listContact.setAdapter(adapter);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("contacts");
-        reference.child(new Preference(getContext()).getUserIdEnrypted()).addValueEventListener(new ValueEventListener() {
+        listContact.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Contact contact = contacts.get(position);
+                String name = contact.getName();
+                String phoneNumber = contact.getPhoneNumber();
+
+                Intent intent = new Intent(getContext(), ChatActivity.class);
+                intent.putExtra("name", name);
+                intent.putExtra("phoneNumer", phoneNumber);
+                startActivity(intent);
+            }
+        });
+
+        contactsReference = FirebaseDatabase.getInstance().getReference("contacts");
+        contactsEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 contacts.clear();
 
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    User user = data.getValue(User.class);
-                    contacts.add(user.getName());
+                    Contact contact = data.getValue(Contact.class);
+                    contacts.add(contact);
                 }
 
                 adapter.notifyDataSetChanged();
@@ -65,10 +87,22 @@ public class ContactsFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        };
+        contactsReference.child(new Preference(getContext()).getUserIdEnrypted());
 
 
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        contactsReference.addValueEventListener(contactsEventListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        contactsReference.removeEventListener(contactsEventListener);
+    }
 }

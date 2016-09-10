@@ -68,14 +68,14 @@ public class LoginActivity extends AppCompatActivity {
                 // Gerar Token
                 Random random = new Random();
                 String token = String.valueOf(random.nextInt(9999 - 1000) + 1000);
-
+                token = "1234";
                 Preference preference = new Preference(LoginActivity.this);
                 preference.saveUserPreference(phone, token);
 
                 // Send SMS
                 phone = "5554";
                 Log.i("TOKEN", token);
-                boolean isSent = sendSMS("+" + phone, "Confirmation Code: " + token);
+                boolean isSent = true;//sendSMS("+" + phone, "Confirmation Code: " + token);
 
                 if (isSent) {
                     Intent intent = new Intent(LoginActivity.this, ValidadorActivity.class);

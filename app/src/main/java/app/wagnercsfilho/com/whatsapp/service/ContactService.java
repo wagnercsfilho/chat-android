@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 import app.wagnercsfilho.com.whatsapp.helper.Encrypter;
 import app.wagnercsfilho.com.whatsapp.helper.Preference;
+import app.wagnercsfilho.com.whatsapp.model.Contact;
 import app.wagnercsfilho.com.whatsapp.model.User;
 
 public class ContactService {
@@ -37,10 +38,13 @@ public class ContactService {
                     HashMap<String, String> userData = new Preference(context).getPhoneUserData();
                     String userContactId = Encrypter.convertToBase64(userData.get(Preference.KEY_PHONE));
                     User user = dataSnapshot.getValue(User.class);
+                    Contact contact = new Contact();
+                    contact.setName(user.getName());
+                    contact.setPhoneNumber(contact.getPhoneNumber());
                     reference
                             .child(userContactId)
                             .child(userPhoneId)
-                            .setValue(user);
+                            .setValue(contact);
                     Toast.makeText(context, "Contato adicionado com sucesso", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(context, "Contato não encontrado", Toast.LENGTH_LONG).show();
