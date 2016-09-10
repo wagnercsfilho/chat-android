@@ -11,7 +11,7 @@ import com.facebook.login.widget.LoginButton;
 
 import app.wagnercsfilho.com.whatsapp.R;
 import app.wagnercsfilho.com.whatsapp.model.User;
-import app.wagnercsfilho.com.whatsapp.services.AuthService;
+import app.wagnercsfilho.com.whatsapp.service.AuthService;
 
 public class SignInActivity extends AppCompatActivity {
 

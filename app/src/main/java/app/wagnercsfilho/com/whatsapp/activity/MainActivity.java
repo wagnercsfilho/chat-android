@@ -17,11 +17,13 @@ import android.widget.Toast;
 import app.wagnercsfilho.com.whatsapp.R;
 import app.wagnercsfilho.com.whatsapp.adapter.TabAdapter;
 import app.wagnercsfilho.com.whatsapp.helper.SlidingTabLayout;
-import app.wagnercsfilho.com.whatsapp.services.AuthService;
+import app.wagnercsfilho.com.whatsapp.service.AuthService;
+import app.wagnercsfilho.com.whatsapp.service.ContactService;
 
 public class MainActivity extends AppCompatActivity {
 
     private AuthService authService;
+    private ContactService contactService;
     private Toolbar toolbar;
     private Button buttonLogout;
     private SlidingTabLayout slidingTabLayout;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         authService = new AuthService(this);
+        contactService = new ContactService(this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Whatsapp");
@@ -71,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     private void openDialogAddPerson() {
@@ -90,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 if (personEmail.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Digite o email do contato", Toast.LENGTH_LONG).show();
                 } else {
-                    
+                    contactService.addContact(personEmail);
                 }
 
             }

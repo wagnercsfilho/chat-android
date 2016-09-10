@@ -39,4 +39,8 @@ public class Preference {
         return userData;
     }
 
+    public String getUserIdEnrypted() {
+       return Encrypter.convertToBase64(preferences.getString(KEY_PHONE, null));
+    }
+
 }

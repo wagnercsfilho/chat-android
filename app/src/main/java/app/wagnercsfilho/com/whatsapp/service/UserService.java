@@ -1,8 +1,9 @@
-package app.wagnercsfilho.com.whatsapp.services;
+package app.wagnercsfilho.com.whatsapp.service;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import app.wagnercsfilho.com.whatsapp.helper.Encrypter;
 import app.wagnercsfilho.com.whatsapp.model.User;
 
 public class UserService {
@@ -18,7 +19,8 @@ public class UserService {
     }
 
     public void create(User user) {
-        this.reference.child(user.getId()).setValue(user);
+        String userPhoneId = Encrypter.convertToBase64(user.getPhoneNumber());
+        this.reference.child(userPhoneId).setValue(user);
     }
 
 }

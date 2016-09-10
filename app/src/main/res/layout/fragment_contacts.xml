@@ -4,10 +4,13 @@
     android:layout_height="match_parent"
     tools:context="app.wagnercsfilho.com.whatsapp.fragment.ContactsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Contatos" />
+        android:id="@+id/listContacts"
+        android:divider="@color/cardview_dark_background"
+        android:dividerHeight="1dp"
+        android:layout_gravity="center_horizontal|top"/>
 
 </FrameLayout>
