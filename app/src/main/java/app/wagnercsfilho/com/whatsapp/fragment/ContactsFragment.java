@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +32,7 @@ import app.wagnercsfilho.com.whatsapp.model.User;
 public class ContactsFragment extends Fragment {
 
     ListView listContact;
-    ArrayAdapter<String> adapter;
+    ContactAdapter adapter;
     ArrayList<Contact> contacts;
     DatabaseReference contactsReference;
     ValueEventListener contactsEventListener;
@@ -45,9 +47,9 @@ public class ContactsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contacts, container, false);
 
-        contacts = new ArrayList<>();
-
         listContact = (ListView) view.findViewById(R.id.listContacts);
+
+        contacts = new ArrayList<>();
         adapter = new ContactAdapter(
                 getActivity(),
                 contacts
@@ -69,7 +71,10 @@ public class ContactsFragment extends Fragment {
             }
         });
 
-        contactsReference = FirebaseDatabase.getInstance().getReference("contacts");
+        String currentUserId = new Preference(getContext()).getUserIdEnrypted();
+        contactsReference = FirebaseDatabase.getInstance()
+                .getReference("contacts")
+                .child(currentUserId);
         contactsEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -78,6 +83,7 @@ public class ContactsFragment extends Fragment {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     Contact contact = data.getValue(Contact.class);
                     contacts.add(contact);
+                    Log.i("BLA", contact.toString());
                 }
 
                 adapter.notifyDataSetChanged();

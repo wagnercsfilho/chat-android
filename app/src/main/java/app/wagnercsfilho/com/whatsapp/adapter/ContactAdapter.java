@@ -1,6 +1,7 @@
 package app.wagnercsfilho.com.whatsapp.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,7 @@ import java.util.List;
 import app.wagnercsfilho.com.whatsapp.R;
 import app.wagnercsfilho.com.whatsapp.model.Contact;
 
-/**
- * Created by Wagner CS Filho on 10/09/2016.
- */
-public class ContactAdapter extends ArrayAdapter {
+public class ContactAdapter extends ArrayAdapter<Contact> {
 
     private Context context;
     private ArrayList<Contact> contacts;
@@ -40,12 +38,14 @@ public class ContactAdapter extends ArrayAdapter {
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            view = inflater.inflate(R.layout.list_contacts, parent);
+            view = inflater.inflate(R.layout.list_contacts, parent, false);
 
-            TextView textView = (TextView) view.findViewById(R.id.textContactName);
+            TextView textView = (TextView) view.findViewById(R.id.textContactName);;
             textView.setText(contact.getName());
+
         }
 
         return view;
     }
+
 }

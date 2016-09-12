@@ -11,10 +11,13 @@
     <ListView
         android:id="@+id/listChat"
         android:layout_width="match_parent"
+        android:layout_above="@+id/layoutMessage"
+        android:layout_below="@+id/toolbarChat"
         android:layout_height="wrap_content"
         android:padding="8dp"/>
 
     <LinearLayout
+        android:id="@+id/layoutMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -24,6 +27,7 @@
         <EditText
             android:id="@+id/editMessage"
             android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:hint="Escreve sua mensagem..."
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
@@ -32,6 +36,7 @@
         <ImageButton
             android:id="@+id/buttonSendMessage"
             android:layout_width="wrap_content"
+            android:src="@drawable/ic_action_send"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </RelativeLayout>
