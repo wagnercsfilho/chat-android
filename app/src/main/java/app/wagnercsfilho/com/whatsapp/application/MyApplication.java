@@ -18,8 +18,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import app.wagnercsfilho.com.whatsapp.activity.LoginActivity;
-import app.wagnercsfilho.com.whatsapp.activity.MainActivity;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class MyApplication extends Application {
@@ -69,14 +69,9 @@ public class MyApplication extends Application {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Intent intent = new Intent(MyApplication.this, MainActivity.class);
-                    intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    Log.d("FIREBASE", "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
+                if (user == null) {
                     Intent intent = new Intent(MyApplication.this, LoginActivity.class);
-                    intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+                    intent.setFlags(FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     Log.d("FIREBASE", "onAuthStateChanged:signed_out");
                 }

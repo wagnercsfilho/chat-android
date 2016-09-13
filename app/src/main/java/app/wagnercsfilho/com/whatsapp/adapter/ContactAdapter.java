@@ -1,17 +1,17 @@
 package app.wagnercsfilho.com.whatsapp.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import app.wagnercsfilho.com.whatsapp.R;
 import app.wagnercsfilho.com.whatsapp.model.Contact;
@@ -21,7 +21,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
     private Context context;
     private ArrayList<Contact> contacts;
 
-    public ContactAdapter(Context context,  ArrayList<Contact> contacts) {
+    public ContactAdapter(Context context, ArrayList<Contact> contacts) {
         super(context, 0, contacts);
 
         this.context = context;
@@ -40,8 +40,25 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
             view = inflater.inflate(R.layout.list_contacts, parent, false);
 
-            TextView textView = (TextView) view.findViewById(R.id.textContactName);;
-            textView.setText(contact.getName());
+            TextView textContactName = (TextView) view.findViewById(R.id.textContactName);
+            textContactName.setText(contact.getName());
+
+            TextView textContactPhoneNumber = (TextView) view.findViewById(R.id.textContactPhoneNumber);
+            textContactPhoneNumber.setText(contact.getPhoneNumber());
+
+            ImageView imageAvatar = (ImageView) view.findViewById(R.id.imageAvatar);
+
+            ColorGenerator generator = ColorGenerator.MATERIAL;
+            int color = generator.getRandomColor();
+
+            TextDrawable drawable = TextDrawable.builder()
+                    .beginConfig()
+                    .width(60)
+                    .height(60)
+                    .endConfig()
+                    .buildRound(String.valueOf(contact.getName().charAt(0)), color);
+            imageAvatar.setImageDrawable(drawable);
+
 
         }
 

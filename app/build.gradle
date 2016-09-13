@@ -19,6 +19,9 @@ android {
     }
     repositories {
         mavenCentral()
+        maven {
+            url 'http://dl.bintray.com/amulyakhare/maven'
+        }
     }
 }
 
@@ -36,6 +39,8 @@ dependencies {
     compile 'com.github.rtoshiro.mflibrary:mflibrary:1.0.0'
     compile 'com.facebook.android:facebook-android-sdk:4.15.0'
     compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
     testCompile 'junit:junit:4.12'
 }
 

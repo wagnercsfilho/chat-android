@@ -1,11 +1,9 @@
 package app.wagnercsfilho.com.whatsapp.activity;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -38,7 +36,6 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference referenceFrom;
     private DatabaseReference referenceTo;
-    private String chatId;
     private String currentUserId;
     private String userId;
     private ArrayList<Message> messages;
@@ -62,7 +59,15 @@ public class ChatActivity extends AppCompatActivity {
         toolbar.setTitle(name);
         toolbar.setSubtitle(phoneNumber);
         toolbar.setNavigationIcon(R.drawable.ic_action_arrow_left);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         listChat = (ListView) findViewById(R.id.listChat);
         buttonSendMessage = (ImageButton) findViewById(R.id.buttonSendMessage);

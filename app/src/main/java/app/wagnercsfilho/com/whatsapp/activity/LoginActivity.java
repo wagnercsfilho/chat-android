@@ -14,12 +14,18 @@ import android.widget.EditText;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Random;
 
 import app.wagnercsfilho.com.whatsapp.R;
 import app.wagnercsfilho.com.whatsapp.helper.Permission;
 import app.wagnercsfilho.com.whatsapp.helper.Preference;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,6 +42,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.setFlags(FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            Log.d("FIREBASE", "onAuthStateChanged:signed_in:" + user.getUid());
+        }
 
         Permission.setPermission(1, this, permissions);
 
@@ -79,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (isSent) {
                     Intent intent = new Intent(LoginActivity.this, ValidadorActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
 

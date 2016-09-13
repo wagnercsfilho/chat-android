@@ -36,10 +36,6 @@
         <activity android:name=".activity.ChatActivity"
             android:label="ChatActivity"
             android:parentActivityName=".activity.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity">
-            </meta-data>
         </activity>
     </application>
 

@@ -1,17 +1,13 @@
 package app.wagnercsfilho.com.whatsapp.fragment;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +23,6 @@ import app.wagnercsfilho.com.whatsapp.activity.ChatActivity;
 import app.wagnercsfilho.com.whatsapp.adapter.ContactAdapter;
 import app.wagnercsfilho.com.whatsapp.helper.Preference;
 import app.wagnercsfilho.com.whatsapp.model.Contact;
-import app.wagnercsfilho.com.whatsapp.model.User;
 
 public class ContactsFragment extends Fragment {
 
@@ -83,7 +78,6 @@ public class ContactsFragment extends Fragment {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     Contact contact = data.getValue(Contact.class);
                     contacts.add(contact);
-                    Log.i("BLA", contact.toString());
                 }
 
                 adapter.notifyDataSetChanged();
