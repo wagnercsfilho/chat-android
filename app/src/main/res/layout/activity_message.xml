@@ -3,19 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.wagnercsfilho.com.whatsapp.activity.ChatActivity">
+    tools:context="app.wagnercsfilho.com.whatsapp.activity.MessageActivity">
 
     <include
         android:id="@+id/toolbarChat"
         layout="@layout/toolbar" />
 
     <ListView
-        android:id="@+id/listChat"
+        android:id="@+id/listMessages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/layoutMessage"
         android:layout_below="@+id/toolbarChat"
-        android:dividerHeight="0dp"
+        android:stackFromBottom="true"
+        android:transcriptMode="normal"
         android:padding="8dp" />
 
     <LinearLayout

@@ -76,6 +76,7 @@ public class AuthService {
                     user.setId(task.getResult().getUser().getUid());
                     UserService userService = new UserService();
                     userService.create(user);
+
                     Toast.makeText(context, "Cadastrado com sucesso!", Toast.LENGTH_LONG).show();
                 } else {
                     task.getException().printStackTrace();

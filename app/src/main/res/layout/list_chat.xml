@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -18,25 +17,23 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textContactName"
+            android:id="@+id/editName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contact Name"
+            android:text="John Due"
             android:textSize="17sp" />
 
         <TextView
-            android:id="@+id/textContactPhoneNumber"
+            android:id="@+id/editMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PhoneNumber"
+            android:text="My Last Message..."
             android:textSize="12sp" />
 
-
     </LinearLayout>
-
 
 </LinearLayout>

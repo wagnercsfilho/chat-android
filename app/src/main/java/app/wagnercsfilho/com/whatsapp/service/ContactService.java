@@ -39,6 +39,7 @@ public class ContactService {
                     String userContactId = Encrypter.convertToBase64(userData.get(Preference.KEY_PHONE));
                     User user = dataSnapshot.getValue(User.class);
                     Contact contact = new Contact();
+                    contact.setId(userContactId);
                     contact.setName(user.getName());
                     contact.setPhoneNumber(contact.getPhoneNumber());
                     reference

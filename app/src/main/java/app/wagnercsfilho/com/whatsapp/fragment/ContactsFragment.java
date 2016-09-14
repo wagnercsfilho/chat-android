@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import app.wagnercsfilho.com.whatsapp.R;
-import app.wagnercsfilho.com.whatsapp.activity.ChatActivity;
+import app.wagnercsfilho.com.whatsapp.activity.MessageActivity;
 import app.wagnercsfilho.com.whatsapp.adapter.ContactAdapter;
 import app.wagnercsfilho.com.whatsapp.helper.Preference;
 import app.wagnercsfilho.com.whatsapp.model.Contact;
@@ -56,12 +56,12 @@ public class ContactsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Contact contact = contacts.get(position);
-                String name = contact.getName();
-                String phoneNumber = contact.getPhoneNumber();
+                String userName = contact.getName();
+                String userId = contact.getId();
 
-                Intent intent = new Intent(getContext(), ChatActivity.class);
-                intent.putExtra("name", name);
-                intent.putExtra("phoneNumer", phoneNumber);
+                Intent intent = new Intent(getContext(), MessageActivity.class);
+                intent.putExtra("userName", userName);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });

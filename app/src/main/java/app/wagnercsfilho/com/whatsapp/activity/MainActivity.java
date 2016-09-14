@@ -69,14 +69,14 @@ public class MainActivity extends AppCompatActivity {
                 authService.logOut();
                 return true;
             case R.id.itemAddPerson:
-                openDialogAddPerson();
+                openDialogAddContact();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void openDialogAddPerson() {
+    private void openDialogAddContact() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Novo contato");
         alert.setMessage("E-mail do usuário");

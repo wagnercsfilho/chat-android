@@ -9,6 +9,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="8dp"
         android:padding="8dp"
         android:text="Message..." />
 
