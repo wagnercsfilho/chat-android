@@ -41,7 +41,7 @@ public class ContactService {
                     Contact contact = new Contact();
                     contact.setId(userContactId);
                     contact.setName(user.getName());
-                    contact.setPhoneNumber(contact.getPhoneNumber());
+                    contact.setPhoneNumber(user.getPhoneNumber());
                     reference
                             .child(userContactId)
                             .child(userPhoneId)

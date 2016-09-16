@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private void openDialogAddContact() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Novo contato");
-        alert.setMessage("E-mail do usuário");
+        alert.setMessage("Telefone do contato");
 
         final EditText editText = new EditText(this);
         alert.setView(editText);
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 String personEmail = editText.getText().toString();
 
                 if (personEmail.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Digite o email do contato", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Digite o telefone do contato", Toast.LENGTH_LONG).show();
                 } else {
                     contactService.addContact(personEmail);
                 }
